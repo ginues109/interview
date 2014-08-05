@@ -17,7 +17,7 @@ namespace qh
 			string();
 		}
 		else{
-			data_= new char[strlen(s)+1];
+			data_= new char[strlen(s)+1];//data_是一个字符数组指针变量
 			strcpy(this->data_, s);
 			len_=strlen(s);
 		}
@@ -29,6 +29,7 @@ namespace qh
 			string();
 		else{
 			this->len_=len;
+			data_=new char[len_+1];
 			strncpy(this->data_,s,len_);
 			this->data_[len_]='\0';
 		}
@@ -36,14 +37,25 @@ namespace qh
 
     string::string( const string& rhs )
     {
-		this->data_=new char[strlen(rhs.data_)+1];
-		strcpy(this->data_,rhs.data_);
+		if(rhs.data_==NULL){
+			string();
+		}
+		else{
+			this->data_=new char[strlen(rhs.data_)+1];
+			strcpy(this->data_,rhs.data_);
+		}
     }
 
     string& string::operator=( const string& rhs )
-    {//is it necessary to consider an empty rhs?
-        this->data_=new char[strlen(rhs.data_)+1];
-		strcpy(this->data_,rhs.data_);
+    {
+		if(this!=&rhs){
+			delete[] data_;
+			if(!rhs.data_) data_=0;
+			else{
+				this->data_=new char[strlen(rhs.data_)+1];
+				strcpy(this->data_,rhs.data_);
+			}
+		}
 		return *this;
     }
 
@@ -67,11 +79,21 @@ namespace qh
         return data_;
     }
 
-    char& string::operator[]( size_t index )
+  //  char* string::operator[]( size_t index )
+  //  {
+		//if(index>=0&&index<len_){
+		//	char* tmp=new char[index+2];
+		//	strncpy(tmp,this->data_,index+2);
+		//	tmp[index+1]='\0';
+		//	return tmp+index;
+		//	//return data_[index];
+		//}
+  //  }
+
+	char& string::operator[]( size_t index )
     {
 		if(index>=0&&index<len_){
 			return data_[index];
 		}
-		
     }
 }
