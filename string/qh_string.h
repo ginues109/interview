@@ -8,9 +8,9 @@ namespace qh
     class string {
     public:
         //ctor
-        string();
+        string();//默认构造函数
         string(const char* s);
-        string(const char* s, size_t len);
+        string(const char* s, size_t len);//size_t = unsigned int
         string(const string& rhs);
 
         string& operator=(const string& rhs);
@@ -24,7 +24,7 @@ namespace qh
         const char* c_str() const;
 
         // set & get
-        char* operator[](size_t index);
+        char& operator[](size_t index);
 
     private:
         char*  data_;
