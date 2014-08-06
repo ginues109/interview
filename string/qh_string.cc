@@ -9,14 +9,17 @@ namespace qh
     string::string()
         : data_(NULL), len_(0)
     {
-		data_='\0';
+		data_=new char[1];
+		data_[0]='\0';
 		len_=0;
     }
 
-    string::string( const char* s )
+    string::string( const char* s )//wei kaojiu 
     {
 		if(s==NULL){
-			string();
+			data_=new char[1];
+			data_[0]='\0';
+			len_=0;
 		}
 		else{
 			data_= new char[strlen(s)+1];//data_是一个字符数组指针变量
@@ -27,8 +30,11 @@ namespace qh
 
     string::string( const char* s, size_t len )
     {
-		if(s==NULL)
-			string();
+		if(s==NULL){
+			data_=new char[1];
+			data_='\0';
+			len_=0;
+		}
 		else{
 			this->len_=len;
 			data_=new char[len_+1];
@@ -40,7 +46,9 @@ namespace qh
     string::string( const string& rhs )
     {
 		if(!rhs.data_){
-			string();
+			data_= new char[1];
+			*data_='\0';
+			len_=0;
 		}
 		else{
 			this->data_=new char[strlen(rhs.data_)+1];
@@ -53,7 +61,11 @@ namespace qh
     {
 		if(this!=&rhs){
 			delete[] data_;
-			if(!rhs.data_) data_=0;
+			if(!rhs.data_) {
+				data_= new char[1];
+				data_='\0';
+				len_=0;
+			}
 			else{
 				this->data_=new char[strlen(rhs.data_)+1];
 				strcpy(this->data_,rhs.data_);
@@ -66,6 +78,7 @@ namespace qh
     string::~string()
     {
 		delete[] data_;
+		len_=0;
     }
 
     size_t string::size() const
@@ -80,6 +93,8 @@ namespace qh
 
     const char* string::c_str() const
     {
+		if(len_==0)
+			return "";
         return data_;
     }
 
