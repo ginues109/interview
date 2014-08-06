@@ -14,7 +14,7 @@ namespace qh
         //! \brief 解析一个磁盘上的INI文件
         //! \param[in] - const std::string & ini_file_path
         //! \return - bool
-        bool Parse(const std::string& ini_file_path);
+//        bool Parse(const std::string& ini_file_path);
 
         //! \brief 解析一段形如INI格式的内存数据。
         //!   例如：ini_data="a:1||b:2||c:3"
@@ -34,9 +34,10 @@ namespace qh
         //! \return - const std::string& - 返回的具体key对应的value
         const std::string& Get(const std::string& key, bool* found);
 
-        const std::string& Get(const std::string& section, const std::string& key, bool* found);
+ //       const std::string& Get(const std::string& section, const std::string& key, bool* found);
 
     private:
+		std::string keyValuePair[100][2];
     };
 }
 

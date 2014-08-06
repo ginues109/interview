@@ -1,5 +1,5 @@
 #include "qh_string.h"
-
+#include <stdio.h>
 #include <string.h>
 
 namespace qh
@@ -9,6 +9,8 @@ namespace qh
     string::string()
         : data_(NULL), len_(0)
     {
+		data_='\0';
+		len_=0;
     }
 
     string::string( const char* s )
@@ -37,12 +39,13 @@ namespace qh
 
     string::string( const string& rhs )
     {
-		if(rhs.data_==NULL){
+		if(!rhs.data_){
 			string();
 		}
 		else{
 			this->data_=new char[strlen(rhs.data_)+1];
 			strcpy(this->data_,rhs.data_);
+			len_=strlen(rhs.data_);
 		}
     }
 
@@ -54,6 +57,7 @@ namespace qh
 			else{
 				this->data_=new char[strlen(rhs.data_)+1];
 				strcpy(this->data_,rhs.data_);
+				len_=strlen(rhs.data_);
 			}
 		}
 		return *this;
