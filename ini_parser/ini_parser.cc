@@ -43,7 +43,6 @@ namespace qh
 		
 		int startFrom=0;	//从startFrom开始往后找键值分隔符
 		int flag=0;			//当前键值分隔符
-//		for(int i=0;(!(flag==-1))&&i<100;i++){
 		while((!(flag==-1))){
 			int step=0;
 			flag = ini_data_string.find_first_of(kvsep,startFrom);

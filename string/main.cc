@@ -37,7 +37,9 @@ int main(int argc, char* argv[])
 	string str3(str1);
 	assert(str3.size()==0);
 	assert(!strcmp(str3.data(),""));
+	assert(!strcmp(str3.c_str(),""));
 	assert(*str3.data()=='\0');
+	assert(*str3.c_str()=='\0');
 	
 	string str6(str2);
 	assert(str6.size()==11);
