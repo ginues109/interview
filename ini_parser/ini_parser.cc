@@ -6,7 +6,9 @@
 
 namespace qh
 {
-	INIParser::INIParser(){};
+	INIParser::INIParser(){
+		keyValuePair["isempty"]="";
+	};
 
 	INIParser::~INIParser(){};
 
@@ -76,13 +78,24 @@ namespace qh
 		return true;
 	};
 
-	std::string INIParser::Get(const std::string& key, bool* found){
+	const std::string& INIParser::Get(const std::string& key, bool* found){
 		std::map<std::string,std::string>::iterator it;
 		it = keyValuePair.find(key);
 		if(it!=keyValuePair.end())
 			return it->second;
 		//*found = false;
-		else
-			return "";
+		else{
+			it = keyValuePair.find("isempty");
+			return it->second;
+		}
 	};
+
+	const std::string& Get(const std::string& section, const std::string& key, bool* found){
+		const int len = section.length();
+		char* c = new char[len+1];
+		strcpy(c,section.c_str());
+		const char* new_data = c;
+		INIParser::Parse(c,len,"||","=");
+
+	}
 }

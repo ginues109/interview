@@ -32,15 +32,14 @@ namespace qh
         //! \param[in] - const std::string & key
         //! \param[in] - bool * found - 输出参数，true表明找到这个key
         //! \return - const std::string& - 返回的具体key对应的value
-        std::string Get(const std::string& key, bool* found);
+        const std::string& Get(const std::string& key, bool* found);
 
- //       const std::string& Get(const std::string& section, const std::string& key, bool* found);
+        const std::string& Get(const std::string& section, const std::string& key, bool* found);
 
 		char* ini_data;
     private:
 		
 		std::map<std::string,std::string> keyValuePair;
-		
     };
 }
 
