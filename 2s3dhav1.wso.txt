@@ -1,0 +1,22 @@
+jobs complete 
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   .gitignore
+#	modified:   ini_parser/ini_parser.cc
+#	modified:   ini_parser/ini_parser.h
+#	modified:   ini_parser/main.cc
+#	modified:   interview.sdf
+#	modified:   string/main.cc
+#	modified:   string/qh_string.cc
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	ini_parser/test.txt
+#	interview.opensdf
+#	string/string.sdf
+
