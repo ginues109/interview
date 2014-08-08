@@ -136,6 +136,24 @@ void test7()
     assert(c == "");
 }
 
+void test8()
+{
+    const std::string& ini_text= "a=1||b=2||isempty=false"; 
+    qh::INIParser parser;
+
+	const std::string& a = parser.Get(ini_text,"a", NULL);
+    assert(a == "1");
+
+    std::string b = parser.Get(ini_text,"b", NULL);
+    assert(b == "2");
+
+    const std::string& isempty = parser.Get(ini_text,"isempty", NULL);
+    assert(isempty == "false");
+
+	const std::string& empty = parser.Get(ini_text,"empty", NULL);
+    assert(empty == "");
+}
+
 int main(int argc, char* argv[])
 {
     //TODO 在这里添加单元测试，越多越好，代码路径覆盖率越全越好
@@ -147,6 +165,7 @@ int main(int argc, char* argv[])
 	test5();//"a=1&&b=&&c="
 	test6();//"||||a:1||b:2||||c:||||hello:4" from test.txt
 	test7();//"a=1&&b=&&c=&&"
+	test8();//""直接通过get获得value
 	printf("All tests passed!\n");
     return 0;
 }

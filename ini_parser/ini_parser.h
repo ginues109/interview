@@ -35,11 +35,12 @@ namespace qh
         const std::string& Get(const std::string& key, bool* found);
 
         const std::string& Get(const std::string& section, const std::string& key, bool* found);
-
+			const std::string& INIParser::test(const std::string& key, bool* found);
 		char* ini_data;
     private:
 		
 		std::map<std::string,std::string> keyValuePair;
+		std::string special_key;
     };
 }
 

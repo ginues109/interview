@@ -7,7 +7,6 @@
 namespace qh
 {
 	INIParser::INIParser(){
-		keyValuePair["isempty"]="";
 	};
 
 	INIParser::~INIParser(){};
@@ -37,7 +36,7 @@ namespace qh
 	};
 
 	bool INIParser::Parse(const char* ini_data, size_t ini_data_len, const std::string& line_seperator, const std::string& key_value_seperator){
-		
+		special_key=line_seperator;
 		std::string ini_data_string(ini_data);
 		std::string lsep(line_seperator);
 		std::string kvsep(key_value_seperator);
@@ -75,6 +74,7 @@ namespace qh
 			else
 				startFrom=flag+1;	//开始找下一个键值分隔符
 		}
+		keyValuePair[special_key];
 		return true;
 	};
 
@@ -85,17 +85,18 @@ namespace qh
 			return it->second;
 		//*found = false;
 		else{
-			it = keyValuePair.find("isempty");
+			it = keyValuePair.find(special_key);
 			return it->second;
 		}
 	};
 
-	const std::string& Get(const std::string& section, const std::string& key, bool* found){
+	const std::string& INIParser::Get(const std::string& section, const std::string& key, bool* found){
 		const int len = section.length();
 		char* c = new char[len+1];
 		strcpy(c,section.c_str());
 		const char* new_data = c;
-		INIParser::Parse(c,len,"||","=");
+		Parse(c,len,"||","=");
+		return Get(key,found);
 
 	}
 }
